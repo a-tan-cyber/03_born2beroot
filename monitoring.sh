@@ -2,8 +2,13 @@
 
 # ARCHITECTURE + KERNEL
 arch_indent="				"
-arch_wrapped="$(uname -a | fold -s -w 60 | sed '/^[[:space:]]*$/d')" 
-arch="$(printf '%s\n' "$arch_wrapped" | sed "2,\$s/^/$arch_indent/")"
+arch="$(
+  uname -a \
+  | tr -d '\r' \
+  | fold -sbw 50 \
+  | sed '/^[[:space:]]*$/d' \
+  | sed "2,\$s/^/$arch_indent/"
+)"
 
 # PHYSICAL CPU (sockets) + VCPU
 cpu_physical="$(grep "physical id" /proc/cpuinfo 2>/dev/null | sort -u | wc -l)"
