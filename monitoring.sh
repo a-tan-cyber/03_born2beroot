@@ -50,15 +50,15 @@ mac_addr="$(ip link show | awk '/link\/ether/ {print $2; exit}')"
 sudo_cmds="$(grep -c "COMMAND=" /var/log/sudo/sudo.log 2>/dev/null || echo 0)"
 
 wall <<EOF
-	#Architecture:		$arch
-	#CPU physical:		$cpu_physical
+	#Architecture:			$arch
+	#CPU physical:			$cpu_physical
 	#vCPU:				$vcpu
-	#Memory Usage: 		${ram_used}/${ram_total}MB (${ram_percent}%)
-	#Disk Usage:		${disk_used}/${disk_total_gb} (${disk_percent}%)
+	#Memory Usage: 			${ram_used}/${ram_total}MB (${ram_percent}%)
+	#Disk Usage:			${disk_used}/${disk_total_gb} (${disk_percent}%)
 	#CPU load:			${cpu_load}%
 	#Last boot:			$last_boot
 	#LVM use:			$lvm_use
-	#Connections TCP:	$tcp_conn ESTABLISHED
+	#Connections TCP:		$tcp_conn ESTABLISHED
 	#User log:			$user_log
 	#Network:			IP $ip_addr ($mac_addr)
 	#Sudo:				$sudo_cmds cmd
