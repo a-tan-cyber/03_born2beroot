@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # ARCHITECTURE + KERNEL
-arch="$(uname -a)"
+indent="                "
+arch="$(uname -a | fold -s -w 70 | sed "2,\$s/^/$indent/")"
 
 # PHYSICAL CPU (sockets) + VCPU
 cpu_physical="$(grep "physical id" /proc/cpuinfo 2>/dev/null | sort -u | wc -l)"
@@ -53,7 +54,7 @@ wall <<EOF
 	# Architecture:		$arch
 	# CPU physical:		$cpu_physical
 	# vCPU:			$vcpu
-	# Memory Usage: 		${ram_used}/${ram_total}MB (${ram_percent}%)
+	# Memory Usage: 	${ram_used}/${ram_total}MB (${ram_percent}%)
 	# Disk Usage:		${disk_used}/${disk_total_gb} (${disk_percent}%)
 	# CPU load:		${cpu_load}%
 	# Last boot:		$last_boot
