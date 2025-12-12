@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # ARCHITECTURE + KERNEL
-arch_wrapped="$(uname -a | fold -s -w 70)"
-arch_indent="				" 
+arch_indent="				"
+arch_wrapped="$(uname -a | fold -s -w 60 | sed '/^[[:space:]]*$/d')" 
 arch="$(printf '%s\n' "$arch_wrapped" | sed "2,\$s/^/$arch_indent/")"
 
 # PHYSICAL CPU (sockets) + VCPU
@@ -55,8 +55,8 @@ wall <<EOF
 	# Architecture:		$arch
 	# CPU physical:		$cpu_physical
 	# vCPU:			$vcpu
-	# Memory Usage: 	${ram_used}/${ram_total}MB (${ram_percent}%)
-	# Disk Usage:		${disk_used}/${disk_total_gb} (${disk_percent}%)
+	# Memory Usage: 	${ram_used} / ${ram_total}MB (${ram_percent}%)
+	# Disk Usage:		${disk_used} / ${disk_total_gb} (${disk_percent}%)
 	# CPU load:		${cpu_load}%
 	# Last boot:		$last_boot
 	# LVM use:		$lvm_use
