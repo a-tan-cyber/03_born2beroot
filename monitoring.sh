@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # ARCHITECTURE + KERNEL
-indent="                "
-arch="$(uname -a | fold -s -w 70 | sed "2,\$s/^/$indent/")"
+arch_wrapped="$(uname -a | fold -s -w 70)"
+arch_indent="				" 
+arch="$(printf '%s\n' "$arch_wrapped" | sed "2,\$s/^/$arch_indent/")"
 
 # PHYSICAL CPU (sockets) + VCPU
 cpu_physical="$(grep "physical id" /proc/cpuinfo 2>/dev/null | sort -u | wc -l)"
