@@ -56,7 +56,7 @@ mac_addr="$(ip link show | awk '/link\/ether/ {print $2; exit}')"
 # SUDO COMMAND COUNT (based on your sudo logfile)
 sudo_cmds="$(grep -c "COMMAND=" /var/log/sudo/sudo.log 2>/dev/null || echo 0)"
 
-wall <<EOF
+wall -n <<EOF
 	# Architecture:		$arch
 	# CPU physical:		$cpu_physical
 	# vCPU:			$vcpu
